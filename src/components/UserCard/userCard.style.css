@@ -1,0 +1,26 @@
+.user-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  justify-items: center;
+  gap: 1px;
+  border: 2px solid rebeccapurple;
+  margin-top: 2rem;
+  border-radius: 1cap;
+  -webkit-border-radius: 1cap;
+  -moz-border-radius: 1cap;
+  -ms-border-radius: 1cap;
+  -o-border-radius: 1cap;
+  padding: 1rem 0;
+
+  .user-image-wrapper {
+    img {
+      border: 2px solid #4582f3;
+      border-radius: 50%;
+      background-color: white;
+      max-width: 150px;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+  }
+}

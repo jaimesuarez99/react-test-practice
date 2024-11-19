@@ -1,0 +1,116 @@
+import { fireEvent, render, screen } from "@testing-library/react";
+import { mockError, mockUser } from "../__mock__";
+import { useLogin } from "../../hooks/useLoginFetch.hook";
+import { LoginForm } from "~/components";
+import { schema } from "~/models";
+
+vi.mock("../../hooks/useLoginFetch.hook", () => ({
+  useLogin: vi.fn(),
+}));
+
+describe("Login Form initials states", () => {
+  let mockLogin: any;
+  let useLoginMock;
+
+  beforeEach(() => {
+    mockLogin = vi.fn();
+
+    useLoginMock = vi.fn().mockReturnValue({
+      loading: false,
+      userData: undefined,
+      error: null,
+      login: mockLogin,
+    });
+
+    vi.mocked(useLogin).mockImplementation(useLoginMock);
+
+    render(<LoginForm />);
+  });
+
+  afterEach(() => {
+    vi.clearAllMocks();
+  });
+
+  test("should render log in form", () => {
+    //render form landmark
+    expect(
+      screen.getByRole("form", { name: "login form" })
+    ).toBeInTheDocument();
+    //render inputs
+    expect(screen.getByLabelText("Username")).toBeInTheDocument();
+    expect(screen.getByLabelText("Password")).toBeInTheDocument();
+    //render button
+    expect(screen.getByRole("button", { name: "login" })).toBeInTheDocument();
+  });
+
+  test("shouldn't render userCard", () => {
+    expect(screen.queryByTestId("user-section")).toBeNull();
+  });
+
+  test("should render inputs erros when empty and user press submit btn", async () => {
+    const submitButton = screen.getByRole("button", { name: "login" });
+    fireEvent.click(submitButton);
+    for (const inputId in schema.shape) {
+      expect(
+        await screen.findByTestId(`${inputId}-error-msg`)
+      ).toBeInTheDocument();
+    }
+  });
+
+  test("should render input error when password invalid", async () => {
+    const input = screen.getByLabelText("Password");
+    fireEvent.change(input, { target: { value: "123" } });
+    fireEvent.click(screen.getByRole("button", { name: "login" }));
+
+    expect(await screen.findByTestId(`password-error-msg`)).toBeInTheDocument();
+  });
+
+  test("should render inputs required error message", async () => {
+    fireEvent.click(screen.getByRole("button", { name: "login" }));
+    expect(await screen.findAllByText("Required")).toHaveLength(
+      Object.keys(schema.shape).length
+    );
+  });
+  test("should call once useLogin hook", async () => {
+    expect(useLogin).toHaveBeenCalledOnce();
+  });
+
+  test("should render the loader", () => {
+    useLoginMock = vi.fn().mockReturnValue({
+      loading: true,
+      userData: undefined,
+      error: null,
+      login: mockLogin,
+    });
+    vi.mocked(useLogin).mockImplementation(useLoginMock);
+    render(<LoginForm />);
+
+    expect(screen.getByText("Is loading")).toBeInTheDocument();
+  });
+
+  test("should render userCard", () => {
+    useLoginMock = vi.fn().mockReturnValue({
+      loading: false,
+      userData: mockUser,
+      error: null,
+      login: mockLogin,
+    });
+    vi.mocked(useLogin).mockImplementation(useLoginMock);
+    render(<LoginForm />);
+
+    expect(screen.queryByTestId("user-section")).toBeInTheDocument();
+  });
+
+  test("should render error message when error", () => {
+    useLoginMock = vi.fn().mockReturnValue({
+      loading: false,
+      userData: undefined,
+      error: mockError,
+      login: mockLogin,
+    });
+    vi.mocked(useLogin).mockImplementation(useLoginMock);
+    render(<LoginForm />);
+
+    expect(screen.getByTestId("error-msg")).toBeInTheDocument();
+  });
+});
