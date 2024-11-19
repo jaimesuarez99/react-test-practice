@@ -57,9 +57,31 @@ Usage
 Login Form
 A form that collects username and password, validates inputs, and interacts with a mock login API.
 
+Code Example:
+tsx
+Copiar código
+<FormInput
+  name="username"
+  control={control}
+  label="Username"
+  type="text"
+  error={errors.username}
+/>
+
+<FormInput
+  name="password"
+  control={control}
+  label="Password"
+  type="password"
+  error={errors.password}
+/>
 User Card
 Displays user details like name, email, and image after a successful login.
 
+Code Example:
+tsx
+Copiar código
+<UserCard userData={userData} error={error} />
 Testing
 Run Tests
 This project includes preconfigured tests for React Testing Library and Vitest. Run tests with the following command:
@@ -83,6 +105,7 @@ User Card Rendering: Tests for proper rendering of user details or error message
 Custom Hook (useLogin): Tests for API calls, loading state, and error handling.
 
 Folder Structure
+<<<<<<< HEAD
 plaintext
 src/
 ├── components/
@@ -101,11 +124,33 @@ src/
 │   ├── hooks/
 │       ├── useLogin.test.ts // Tests for the useLogin hook
 ├── App.tsx // Main app entry point
+=======
+scss
+Copiar código
+src/
+├── components/
+│   ├── LoginForm.tsx       // Login form implementation
+│   ├── FormInput.tsx       // Reusable form input component
+│   ├── UserCard.tsx        // User card component
+├── hooks/
+│   ├── useLogin.ts         // Custom hook for handling login logic
+├── models/
+│   ├── schema.ts           // Zod validation schema for form inputs
+│   ├── mocks.ts            // Mock data for tests
+├── test/
+│   ├── components/
+│   │   ├── loginForm.test.tsx   // Tests for the LoginForm component
+│   │   ├── userCard.test.tsx    // Tests for the UserCard component
+│   ├── hooks/
+│       ├── useLogin.test.ts     // Tests for the useLogin hook
+├── App.tsx                  // Main app entry point
+>>>>>>> 30253aeb72b74ef606eb1a69729f2edb1d116e55
 Mock Data
 The project provides mock data for user information and API calls, located in src/models/mocks.ts. You can customize this data for testing purposes.
 
 Example:
 Mock User:
+
 typescript
 export const mockUser: User = {
   id: 2,
@@ -119,6 +164,7 @@ export const mockUser: User = {
   refreshToken: "...",
 };
 Mock API URL:
+
 typescript
 export const urlReqMock = "https://dummyjson.com/auth/login";
 Contributing
@@ -141,7 +187,10 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 
 Contact
 If you have any questions or feedback, feel free to reach out or open an issue on GitHub!
+<<<<<<< HEAD
 
 
 Let me know if you need any further adjustments! 😊
 ```
+=======
+>>>>>>> 30253aeb72b74ef606eb1a69729f2edb1d116e55
