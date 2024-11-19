@@ -36,18 +36,14 @@ Install dependencies:
 bash
 Copiar código
 npm install
-
 # or
-
 yarn install
 Start the development server:
 
 bash
 Copiar código
 npm run dev
-
 # or
-
 yarn dev
 The app will be available at http://localhost:5173.
 
@@ -55,9 +51,31 @@ Usage
 Login Form
 A form that collects username and password, validates inputs, and interacts with a mock login API.
 
+Code Example:
+tsx
+Copiar código
+<FormInput
+  name="username"
+  control={control}
+  label="Username"
+  type="text"
+  error={errors.username}
+/>
+
+<FormInput
+  name="password"
+  control={control}
+  label="Password"
+  type="password"
+  error={errors.password}
+/>
 User Card
 Displays user details like name, email, and image after a successful login.
 
+Code Example:
+tsx
+Copiar código
+<UserCard userData={userData} error={error} />
 Testing
 Run Tests
 This project includes preconfigured tests for React Testing Library and Vitest. Run tests with the following command:
@@ -65,9 +83,7 @@ This project includes preconfigured tests for React Testing Library and Vitest. 
 bash
 Copiar código
 npm test
-
 # or
-
 yarn test
 Test Coverage
 To generate a test coverage report:
@@ -75,53 +91,53 @@ To generate a test coverage report:
 bash
 Copiar código
 npm test -- --coverage
-
 # or
-
 yarn test --coverage
 Included Tests
 Login Form Validation: Tests for required fields, invalid inputs, and successful submissions.
 User Card Rendering: Tests for proper rendering of user details or error messages.
 Custom Hook (useLogin): Tests for API calls, loading state, and error handling.
 Folder Structure
-plaintext
+scss
 Copiar código
 src/
 ├── components/
-│ ├── LoginForm.tsx // Login form implementation
-│ ├── FormInput.tsx // Reusable form input component
-│ ├── UserCard.tsx // User card component
+│   ├── LoginForm.tsx       // Login form implementation
+│   ├── FormInput.tsx       // Reusable form input component
+│   ├── UserCard.tsx        // User card component
 ├── hooks/
-│ ├── useLogin.ts // Custom hook for handling login logic
+│   ├── useLogin.ts         // Custom hook for handling login logic
 ├── models/
-│ ├── schema.ts // Zod validation schema for form inputs
-│ ├── mocks.ts // Mock data for tests
+│   ├── schema.ts           // Zod validation schema for form inputs
+│   ├── mocks.ts            // Mock data for tests
 ├── test/
-│ ├── components/
-│ │ ├── loginForm.test.tsx // Tests for the LoginForm component
-│ │ ├── userCard.test.tsx // Tests for the UserCard component
-│ ├── hooks/
-│ ├── useLogin.test.ts // Tests for the useLogin hook
-├── App.tsx // Main app entry point
+│   ├── components/
+│   │   ├── loginForm.test.tsx   // Tests for the LoginForm component
+│   │   ├── userCard.test.tsx    // Tests for the UserCard component
+│   ├── hooks/
+│       ├── useLogin.test.ts     // Tests for the useLogin hook
+├── App.tsx                  // Main app entry point
 Mock Data
 The project provides mock data for user information and API calls, located in src/models/mocks.ts. You can customize this data for testing purposes.
 
 Example:
 Mock User:
+
 typescript
 Copiar código
 export const mockUser: User = {
-id: 2,
-username: "michaelw",
-email: "michael.williams@x.dummyjson.com",
-firstName: "Michael",
-lastName: "Williams",
-gender: "male",
-image: "https://dummyjson.com/icon/michaelw/128",
-accessToken: "...",
-refreshToken: "...",
+  id: 2,
+  username: "michaelw",
+  email: "michael.williams@x.dummyjson.com",
+  firstName: "Michael",
+  lastName: "Williams",
+  gender: "male",
+  image: "https://dummyjson.com/icon/michaelw/128",
+  accessToken: "...",
+  refreshToken: "...",
 };
 Mock API URL:
+
 typescript
 Copiar código
 export const urlReqMock = "https://dummyjson.com/auth/login";
@@ -143,5 +159,3 @@ This project is licensed under the MIT License. See the LICENSE file for more de
 
 Contact
 If you have any questions or feedback, feel free to reach out or open an issue on GitHub!
-
-Let me know if you’d like to tweak anything or add more specific examples to the README.
