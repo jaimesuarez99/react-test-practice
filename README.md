@@ -24,7 +24,7 @@ This project is a React-based application that includes a login form and a user 
 
 ### Prerequisites
 
-- [Node.js](https://nodejs.org/) (version 16 or higher recommended)
+- [Node.js](https://nodejs.org/) (version 18 or higher recommended)
 - [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 
 ### Installation
@@ -78,16 +78,24 @@ src/
 │       ├── userCard.style.css
 │       └── UserCard.tsx
 ├── hooks/
-│   └── useLogin.ts
+│   ├── index.ts
+│   └── useLoginFetch.hook.ts
 ├── models/
+│   ├── loginForm.models.ts
 │   └── index.ts
-├── __mock__/
-│   └── index.ts
+├── tests/
+│   ├── ___Mocks___/
+│   │   ├── index.ts
+│   │   └── loginform.mock.ts
+│   ├── components/
+│   │   ├── loginForm.answers.test.txt
+│   │   ├── loginForm.test.tsx
+│   │   └── userCard.test.tsx
+│   └── hooks/
+│       └── useloginForm.test.tsx
 ├── App.tsx
 ├── main.tsx
 ├── index.css
-└── tests/
-    └── LoginForm.test.tsx
 ```
 
 - **`components/`**: Contains reusable components for the application.
@@ -283,5 +291,5 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 For questions or suggestions, feel free to reach out:
 
-- **GitHub:** [your-username](https://github.com/your-username)
-- **Email:** <your-email@example.com>
+- **GitHub:** [jaimesuarez99](https://github.com/jaimesuarez99)
+- **Email:** <jaimesuarezb99@gmail.com>
