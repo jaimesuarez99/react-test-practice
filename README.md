@@ -1,185 +1,287 @@
-# Login Form and User Card Testing Practice
+# Login Form and User Card Component
 
-## Description
+This project is a React-based application that includes a login form and a user card component. It is designed for developers to practice testing with React Testing Library and Vitest. The application is built with Vite for fast and efficient development.
 
-This project is a simple React application featuring:
-
-- A Login Form that handles user authentication.
-- A User Card to display user details upon successful login.
-
-The primary purpose of this project is to provide a starting point for developers to practice writing tests using React Testing Library and Vitest in a Vite-based setup. It includes:
-
-- Form validation using react-hook-form and zod.
-- API interactions with mock data.
-- Preconfigured environment for testing React components.
+---
 
 ## Features
 
-- 🖋️ **Form Validation**: Validates inputs like username and password with react-hook-form and zod.
-- 🧾 **Dynamic User Card**: Displays user information upon login success.
-- 🔬 **Test-Friendly Setup**: Configured for React Testing Library and Vitest.
-- 🚀 **Mock Support**: Includes mock data for testing (user data, API calls, errors).
+- **Login Form:**
+  - A user authentication form with input validation.
+  - Integration with `react-hook-form` and `zod` for schema-based validation.
+- **User Card:**
+  - Displays user information upon successful login.
+  - Handles and displays error messages.
+- **Testing Setup:**
+  - Pre-configured with React Testing Library and Vitest for seamless testing.
+  - Includes mock data for comprehensive test coverage.
+- **Vite Integration:**
+  - Ultra-fast build system optimized for modern web applications.
+
+---
 
 ## Getting Started
 
 ### Prerequisites
 
-Ensure you have the following installed:
-
-- Node.js (v16 or later recommended)
-- npm or yarn
+- [Node.js](https://nodejs.org/) (version 16 or higher recommended)
+- [npm](https://www.npmjs.com/) or [yarn](https://yarnpkg.com/)
 
 ### Installation
 
-Clone this repository:
+1. Clone the repository:
 
-```bash
-git clone https://github.com/your-username/login-form-testing-practice.git
-```
+   ```bash
+   git clone https://github.com/your-username/your-repo.git
+   ```
 
-````
+2. Navigate to the project directory:
 
-Navigate to the project directory:
+   ```bash
+   cd your-repo
+   ```
 
-```bash
-cd login-form-testing-practice
-```
+3. Install dependencies:
 
-Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-```bash
-npm install
-# or
-yarn install
-```
+### Running the App
 
-Start the development server:
+1. Start the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-The app will be available at [http://localhost:5173](http://localhost:5173).
+2. Open your browser and navigate to `http://localhost:5173`.
 
-## Usage
+---
 
-### Login Form
-
-A form that collects username and password, validates inputs, and interacts with a mock login API.
-
-### User Card
-
-Displays user details like name, email, and image after a successful login.
-
-## Testing
-
-### Run Tests
-
-This project includes preconfigured tests for React Testing Library and Vitest. Run tests with the following command:
-
-```bash
-npm test
-# or
-yarn test
-```
-
-### Test Coverage
-
-To generate a test coverage report:
-
-```bash
-npm test -- --coverage
-# or
-yarn test --coverage
-```
-
-### Included Tests
-
-- **Login Form Validation**: Tests for required fields, invalid inputs, and successful submissions.
-- **User Card Rendering**: Tests for proper rendering of user details or error messages.
-- **Custom Hook (useLogin)**: Tests for API calls, loading state, and error handling.
-
-## Folder Structure
+## Project Structure
 
 ```plaintext
 src/
 ├── components/
-│   ├── LoginForm.tsx // Login form implementation
-│   ├── FormInput.tsx // Reusable form input component
-│   ├── UserCard.tsx // User card component
+│   ├── LoginForm/
+│   │   ├── loginForm.style.css
+│   │   └── LoginForm.tsx
+│   ├── FormInput/
+│   │   ├── formInput.style.css
+│   │   └── FormInput.tsx
+│   └── UserCard/
+│       ├── userCard.style.css
+│       └── UserCard.tsx
 ├── hooks/
-│   ├── useLogin.ts // Custom hook for handling login logic
+│   └── useLogin.ts
 ├── models/
-│   ├── schema.ts // Zod validation schema for form inputs
-│   ├── mocks.ts // Mock data for tests
-├── test/
-│   ├── components/
-│   │   ├── loginForm.test.tsx // Tests for the LoginForm component
-│   │   ├── userCard.test.tsx // Tests for the UserCard component
-│   ├── hooks/
-│       ├── useLogin.test.ts // Tests for the useLogin hook
-├── App.tsx // Main app entry point
+│   └── index.ts
+├── __mock__/
+│   └── index.ts
+├── App.tsx
+├── main.tsx
+├── index.css
+└── tests/
+    └── LoginForm.test.tsx
 ```
 
-## Mock Data
+- **`components/`**: Contains reusable components for the application.
+- **`hooks/`**: Includes the custom `useLogin` hook.
+- **`models/`**: Type definitions and schema validation logic.
+- **`__mock__/`**: Mock data for tests.
+- **`tests/`**: Unit and integration test files.
 
-The project provides mock data for user information and API calls, located in `src/models/mocks.ts`. You can customize this data for testing purposes.
+---
 
-### Example:
+## Components Overview
 
-#### Mock User:
+### LoginForm Component
 
-```typescript
-export const mockUser: User = {
-  id: 2,
-  username: "michaelw",
-  email: "michael.williams@x.dummyjson.com",
-  firstName: "Michael",
-  lastName: "Williams",
-  gender: "male",
-  image: "https://dummyjson.com/icon/michaelw/128",
-  accessToken: "...",
-  refreshToken: "...",
-};
+**File:** `src/components/LoginForm/LoginForm.tsx`
+
+The `LoginForm` component is the main form for user authentication. It validates input data and handles API calls.
+
+**Features:**
+
+- Validates user input using `react-hook-form` and `zod`.
+- Displays error messages for invalid inputs.
+- Shows a loader during the login process.
+- Renders the `UserCard` component on successful login.
+
+### FormInput Component
+
+**File:** `src/components/FormInput/FormInput.tsx`
+
+A reusable input field component integrated with `react-hook-form`.
+
+**Features:**
+
+- Renders input fields with validation.
+- Displays error messages for invalid inputs.
+
+### UserCard Component
+
+**File:** `src/components/UserCard/UserCard.tsx`
+
+Displays user information after a successful login or an error message if the login fails.
+
+**Features:**
+
+- Dynamically displays user data or error messages.
+- Uses a clean, accessible layout for user details.
+
+---
+
+## Custom Hook: useLogin
+
+**File:** `src/hooks/useLogin.ts`
+
+A custom React hook for managing login functionality.
+
+**Features:**
+
+- Tracks loading, error, and user data states.
+- Handles API requests for user authentication.
+- Uses `fetch` for server communication.
+
+---
+
+## Testing
+
+### Running Tests
+
+1. Run all tests:
+
+   ```bash
+   npm run test
+   # or
+   yarn test
+   ```
+
+2. Run tests in watch mode:
+
+   ```bash
+   npm run test:watch
+   # or
+   yarn test --watch
+   ```
+
+### Test Cases
+
+**File:** `src/tests/LoginForm.test.tsx`
+
+- Tests for the `LoginForm` component:
+  - Renders the form correctly.
+  - Displays error messages for invalid inputs.
+  - Calls the `useLogin` hook on submission.
+  - Displays a loader during API calls.
+  - Renders the `UserCard` on successful login.
+
+---
+
+## Scripts
+
+- **`npm run dev`**: Start the development server.
+- **`npm run build`**: Build the app for production.
+- **`npm run preview`**: Preview the production build.
+- **`npm run test`**: Run all tests.
+- **`npm run test:watch`**: Run tests in watch mode.
+
+---
+
+## Configuration
+
+### Vite Configuration
+
+**File:** `vite.config.ts`
+
+```ts
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react-swc";
+import path from "path";
+
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: {
+      "~": path.resolve(__dirname, "./src"),
+    },
+  },
+  test: {
+    environment: "jsdom",
+    setupFiles: "./testingLibrary.setup.ts",
+    globals: true,
+  },
+});
 ```
 
-#### Mock API URL:
+### Vitest Configuration
 
-```typescript
-export const urlReqMock = "https://dummyjson.com/auth/login";
+**File:** `vitest.config.ts`
+
+```ts
+import { defineConfig } from "vitest/config";
+import react from "@vitejs/plugin-react-swc";
+import path from "path";
+
+export default defineConfig({
+  plugins: [react()],
+  resolve: {
+    alias: {
+      "~": path.resolve(__dirname, "./src"),
+    },
+  },
+  test: {
+    environment: "jsdom",
+    setupFiles: "./testingLibrary.setup.ts",
+    globals: true,
+  },
+});
 ```
 
-## Contributing
+---
 
-Contributions are welcome! If you want to improve the project or add new features, follow these steps:
+## Contribution
+
+Contributions are welcome! Please follow these steps:
 
 1. Fork the repository.
 2. Create a new branch:
 
-```bash
-git checkout -b feature-name
-```
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
 
 3. Commit your changes:
 
-```bash
-git commit -m "Add feature"
-```
+   ```bash
+   git commit -m "Add your feature"
+   ```
 
-4. Push the branch and open a Pull Request.
+4. Push to your branch:
+
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+
+5. Create a pull request.
+
+---
 
 ## License
 
-This project is licensed under the MIT License. See the LICENSE file for more details.
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+---
 
 ## Contact
 
-If you have any questions or feedback, feel free to reach out or open an issue on GitHub!
+For questions or suggestions, feel free to reach out:
 
-```
-
-I hope this meets your needs! Let me know if there's anything else you'd like to adjust. 😊
-```
-````
+- **GitHub:** [your-username](https://github.com/your-username)
+- **Email:** <your-email@example.com>
